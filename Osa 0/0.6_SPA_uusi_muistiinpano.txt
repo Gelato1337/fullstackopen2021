@@ -1,8 +1,0 @@
-Selain -> Palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
-Palvelin -> Selain status 201 created
-
-note:
-Selain piirtää JavaScript koodin mukaan JSON tyyppisen muistiinpanon suoraan HTML tiedostoon.
-Selain myös lähettää JSON tyyppisen muistiinpanon, POST pyynnöllä osoitteeseen new_note_spa.
-Palvelin kuittaa pyynnön statuskoodilla 201.
-
