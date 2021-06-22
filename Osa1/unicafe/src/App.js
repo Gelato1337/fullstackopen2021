@@ -13,6 +13,7 @@ const Statistics = (props) => {
   if(all === 0 ) {
     return (
       <div>
+        <p></p>
         No feedback given
       </div>
     )
@@ -20,7 +21,7 @@ const Statistics = (props) => {
 
  
 
- for (var i = 0; i<clicks.length; i++) {
+ for (var j = 0; j<clicks.length; j++) {
   var average = 0; 
    average = clicks[0] - clicks[1];
    average = average / all;
@@ -31,16 +32,33 @@ const Statistics = (props) => {
   return (
     <div>
     <h1>Statistics</h1>
-    <p>good {props.allClicks[0]}</p>
-    <p>bad {props.allClicks[1]}</p>
-    <p>neutral {props.allClicks[2]}</p>
-    <p>all {all}</p>
-    <p>average {average}</p>
-    <p>positive {positive}%</p>
-    
+    <table>
+        <tbody>
+    <StatisticsLine value={props.allClicks[0]} text='good'/>
+    <StatisticsLine value={props.allClicks[1]} text='bad'/>
+    <StatisticsLine value={props.allClicks[2]} text='neutral'/>
+    <StatisticsLine value={all} text='all'/>
+    <StatisticsLine value={average.toFixed(2)} text='average'/>
+    <StatisticsLine value={positive.toFixed(2) + '%'} text='positive'/>
+    </tbody>
+       </table>
         </div>
   )
 }
+const StatisticsLine = ({value, text}) =>
+ (<tr><td>{text + ' '}</td> 
+      <td>{value}</td></tr>)
+ 
+
+
+const Button = ({ handleClick, text }) => 
+(  <button onClick={handleClick}>    
+  {text}  
+</button>)
+
+
+
+
 
 const App = () => {
   // tallenna napit omaan tilaansa
@@ -66,9 +84,9 @@ const App = () => {
   return (
     <div>
       <h1>Give feedback</h1>
-      <button onClick={handleGoodClick}>good</button>
-      <button onClick={handleBadClick}>bad</button>
-      <button onClick={handleNeutralClick}>neutral</button>
+      <Button handleClick={handleGoodClick} text='good' />
+      <Button handleClick={handleBadClick} text='bad' />
+      <Button handleClick={handleNeutralClick} text='neutral' />
       <Statistics allClicks={[good,bad,neutral]}/>
     </div>
   )
