@@ -1,4 +1,4 @@
-import { part } from 'file-loader'
+
 import React from 'react'
 
 const Course = ({course}) => {
@@ -7,16 +7,19 @@ const Course = ({course}) => {
         <Header course={course}/>
         <Content course={course}/>
         <Total course={course}/>
+      
     </div>
     )
 }
 
+
+
 const Header = ({course}) => {
     return (
       <div>
-        <h1>
+        <h2>
           {course.name}
-        </h1>  
+        </h2>  
       </div>
     )
     }
@@ -39,13 +42,20 @@ const Header = ({course}) => {
           ) 
     }
     
-    const Total = (props) => {
+    const Total = ({course}) => {
+
+      const Redux = course.parts.reduce( (s, p) => {
+        console.log('what is happening', s, p)
+        console.log(s, p)
+        return s+p.exercises
+        },0)
       
       return (
     <div>
-      <p>
-        Number of exercises {props.course.parts[0].exercises +props.course.parts[1].exercises +props.course.parts[2].exercises} 
-      </p>
+      
+        <h3>Total of {Redux} exercises</h3>
+
+      
     </div>
       )
     }
