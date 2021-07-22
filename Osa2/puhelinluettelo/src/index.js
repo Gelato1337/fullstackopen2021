@@ -3,12 +3,13 @@ import App from './App'
 
 const persons = [
   { 
-    id: 1,
-    name: 'Arto Hellas'
+    name: 'Arto Hellas',
+    number: '040 123 3453'
   },
+
   {
-    id:2,
-    name: 'Martti XD'
+    name: 'Martti XD',
+    number: '045 545 3546'
   }
 ]
 
