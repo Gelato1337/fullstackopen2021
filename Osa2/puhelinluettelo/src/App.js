@@ -1,24 +1,51 @@
 import React, { useState } from 'react'
+import Person from './components/phonebook'
 
-const App = () => {
-  const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
-  ]) 
+
+
+
+const App = (props) => {
+
+  const [ persons, setPersons] = useState(props.persons) 
   const [ newName, setNewName ] = useState('')
+
+
+  const addPerson = (event) => {
+    event.preventDefault()
+    const personObject = {
+      name: newName,
+      id: persons.length +1,
+    }
+    setPersons(persons.concat(personObject))
+    setNewName('')
+  }
+
+  const handlePersonAdd = (event) => {
+    console.log(event.target.value) 
+    setNewName(event.target.value)
+  }
+
+  
+
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
+      <form onSubmit={addPerson}>
         <div>
-          name: <input />
+          name: <input value={newName}
+          onChange={handlePersonAdd}/>
         </div>
         <div>
           <button type="submit">add</button>
         </div>
       </form>
       <h2>Numbers</h2>
-      ...
+      <ul>
+        {persons.map(person =>
+        <Person key={person.id} person={person}/>
+        )}
+      </ul>
     </div>
   )
 
